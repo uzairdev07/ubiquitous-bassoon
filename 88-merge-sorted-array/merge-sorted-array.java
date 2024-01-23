@@ -7,4 +7,18 @@ class Solution {
         Arrays.sort(nums1);
 
     }
+
+    public void sortArray(int arr[], int N) {
+        for (int i = 0; i < N;) {
+            if (arr[i] == i + 1) {
+                i++;
+            } else {
+                int temp1 = arr[i];
+                int temp2 = arr[arr[i] - 1];
+                arr[i] = temp2;
+                arr[temp1 - 1] = temp1;
+            }
+        }
+    }
+
 }
