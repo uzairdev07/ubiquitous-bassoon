@@ -15,6 +15,6 @@ public:
             }
             ++r, --l;
         }
-        return a > b;
+        return 1;
     }
 };
