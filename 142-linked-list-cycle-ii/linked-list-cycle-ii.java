@@ -18,16 +18,20 @@ public class Solution {
             sl = sl.next;
             fs = fs.next.next;
             if (sl == fs) {
-                fs = head;
-                while (sl != fs) {
-                    sl = sl.next;
-                    fs = fs.next;
-                }
-                return sl;
+                break;
             }            
         }
 
-        return null;
+        if(fs == null || fs.next == null)
+            return null;
+
+        fs = head;
+        while (sl != fs) {
+            sl = sl.next;
+            fs = fs.next;
+        }
+
+        return sl;
 
     }
 }
