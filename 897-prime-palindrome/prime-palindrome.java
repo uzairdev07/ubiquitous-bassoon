@@ -1,10 +1,9 @@
 class Solution {
     public int primePalindrome(int n) {
-        if (n == 1)
+        if (n <= 1)
             return 2;
         int i = n;
-        long r = 1_100_000_00;
-        while (i <= r) {
+        while (n > 0) {
             if (isPal(i) && isPrime(i))
                 return i;
             i++;
@@ -29,14 +28,12 @@ class Solution {
     }
 
     private boolean isPrime(int n) {
-        boolean f = true;
-        for (int i = 2; i < n; i++) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
             if (n % i == 0) {
-                f = false;
-                break;
+                return false;
             }
         }
-        return f;
+        return true;
     }
 
 }
