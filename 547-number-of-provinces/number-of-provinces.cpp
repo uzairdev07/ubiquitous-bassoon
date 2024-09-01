@@ -2,13 +2,13 @@ class Solution {
 public:
 
     int visited[200];
-    void dfs(vector<vector<int>>& isConnected, int crr) {
+    void dfs(int s, vector<vector<int>>& isConnected, int crr) {
         int n = isConnected[0].size();
         
-        for(int i=0; i<n; ++i) {
+        for(int i=s; i<n; ++i) {
             if(isConnected[crr][i] && !visited[i]) {
                 visited[i] = 1;
-                dfs( isConnected, i);
+                dfs(s, isConnected, i);
             } 
         }
     }
@@ -25,7 +25,7 @@ public:
                 continue;
             
             visited[i] = 1;
-            dfs(isConnected, i);
+            dfs(i+1, isConnected, i);
 
             ++comp;
         }
