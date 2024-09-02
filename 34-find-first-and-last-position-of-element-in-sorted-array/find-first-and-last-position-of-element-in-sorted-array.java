@@ -1,30 +1,33 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int[] result = {-1, -1};
-        if (nums.length == 0) {
-            return result;
-        }
-
-        Map<Integer, Integer> map = new HashMap<>();
-        boolean isFound = false;
-
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(nums[i]) && nums[i] == target) {
-                result[0] = Math.min(map.get(nums[i]), i);
-                result[1] = i;
-                isFound = true;
-            } else if (nums[i] == target) {
-                map.put(nums[i], i);
-            }
-        }
-
-        if (!isFound) {
-            if (map.containsKey(target)) {
-                result[0] = map.get(target);
-                result[1] = map.get(target);
-            }
-        }
-
-        return result;
+        return new int[] {
+            bs(nums, target, true),
+            bs(nums, target, false),
+        };
     }
+
+    private int bs(int[] nums, int target, boolean isLeft) {
+        int n = nums.length;
+        int l = 0, r = n - 1;
+        int index = -1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] == target) {
+                index = m;
+                if (isLeft)
+                    r = m - 1;
+                else
+                    l = m + 1;
+            }
+            else if (nums[m] < target) {
+                l = l + 1;
+            } else {
+                r = r - 1;
+            }
+        }
+
+        return index;
+
+    }
+
 }
