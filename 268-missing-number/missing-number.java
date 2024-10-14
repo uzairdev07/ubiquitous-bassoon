@@ -1,16 +1,12 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int[] freq = new int[10000];
-        
-        for (int i : nums)
-            freq[i]++;
+        int n = nums.length;
+        int sum = (n * (n + 1))/2;
 
-        System.out.println(Arrays.toString(freq));
-
-        for (int i = 0; i < freq.length; i++)
-            if (freq[i] == 0)
-                return i;
-
-        return nums.length;
+        int cSum = 0;
+        for (int x : nums)
+            cSum += x;
+        return sum - cSum;
     }
+
 }
