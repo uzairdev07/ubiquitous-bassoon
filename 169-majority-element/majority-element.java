@@ -1,16 +1,16 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        int x = nums.length / 2;
-        
-        Map<Integer, Integer> map = new HashMap<>();
-        int max = Integer.MIN_VALUE;
+        Map<Integer, Integer> freq = new HashMap<>();
+        int max = 0;
+        int ans = 0;
         for (int n : nums) {
-            map.put(n, map.getOrDefault(n, 0) + 1);
-            if (map.get(n) > x) {
-                if (max < map.get(n))
-                    max = n;
+            freq.put(n, freq.getOrDefault(n, 0)+1);
+            if (freq.get(n) > max) {
+                max = freq.get(n);
+                ans = n;
             }
         }
-        return max;
+        return ans;
+        
     }
 }
