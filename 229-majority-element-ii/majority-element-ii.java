@@ -1,17 +1,14 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
-        int x = nums.length / 3;
-        
-        Map<Integer, Integer> map = new HashMap<>();
-        
-        List<Integer> res = new ArrayList<>();
+        int k = nums.length/3;
+        Map<Integer, Integer> freq = new HashMap<>();
+        for (int x : nums)
+            freq.put(x, freq.getOrDefault(x, 0) + 1);
 
-        for (int n : nums) {
-            map.put(n, map.getOrDefault(n, 0) + 1);
-            if (map.get(n) > x) {
-                if (!res.contains(n))
-                    res.add(n);
-            }
+        List<Integer> res = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+            if (entry.getValue() > k)
+                res.add(entry.getKey());
         }
         return res;
     }
