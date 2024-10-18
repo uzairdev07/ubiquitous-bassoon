@@ -1,33 +1,31 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        return new int[] {
-            bs(nums, target, true),
-            bs(nums, target, false),
-        };
-    }
 
-    private int bs(int[] nums, int target, boolean isLeft) {
-        int n = nums.length;
-        int l = 0, r = n - 1;
-        int index = -1;
+        int l = 0, r = nums.length-1;
+        int[] res = {-1, -1};
+       
         while (l <= r) {
-            int m = l + (r - l) / 2;
-            if (nums[m] == target) {
-                index = m;
-                if (isLeft)
-                    r = m - 1;
-                else
-                    l = m + 1;
+            int mid = (l + r) / 2;
+
+            if (nums[mid] == target) {
+                int i = mid-1;
+                while (i >= 0 && nums[i] == nums[mid])
+                    i--;
+                res[0] = (i+1);
+
+                int j = mid+1;
+                while (j < nums.length && nums[j] == nums[mid]) {
+                    j++;
+                }
+                res[1] = j-1;
+
+                return res;
             }
-            else if (nums[m] < target) {
-                l = l + 1;
-            } else {
-                r = r - 1;
-            }
+            if (nums[mid] < target)
+                l = mid + 1;
+            else
+                r = mid - 1;
         }
-
-        return index;
-
+        return res;
     }
-
 }
