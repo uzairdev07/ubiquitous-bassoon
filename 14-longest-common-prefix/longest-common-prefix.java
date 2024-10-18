@@ -4,12 +4,12 @@ class Solution {
         char[] f = strs[0].toCharArray();
         char[] l = strs[strs.length-1].toCharArray();
     
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         for (int i = 0; i < f.length; i++) {
             if (f[i] != l[i])
                 break;
-            ans+=f[i];
+            ans.append(f[i]);
         }
-        return ans;
+        return ans.toString();
     }
 }
