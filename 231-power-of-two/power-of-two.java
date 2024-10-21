@@ -1,9 +1,13 @@
 class Solution {
-    Set<Long> pow = new HashSet<>();
     public boolean isPowerOfTwo(int n) {
-        for (int i = -31; i < 32; i++)
-            if (n == Math.pow(2, i))
+        int x = 1;
+        while (x <= n) {
+            if (x == n)
                 return true;
+            if (x > Integer.MAX_VALUE / 2)
+                break;
+            x = x << 1;
+        }
         return false;
     }
 }
