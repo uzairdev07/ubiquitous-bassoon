@@ -14,20 +14,22 @@
  * }
  */
 class Solution {
-
     public boolean isSymmetric(TreeNode root) {
-        return lot(root.left, root.right);
+        if (root == null)
+            return true;
+
+        return dfs(root.left, root.right);
     }
 
-    private boolean lot(TreeNode root1, TreeNode root2) {
-        if (root1 == null && root2 == null)
+    private boolean dfs(TreeNode a, TreeNode b) {
+
+        if (a == null && b == null)
             return true;
-        
-        if (root1 == null || root2 == null)
+
+        if (a == null || b == null)
             return false;
-        
-        return (root1.val == root2.val) &&lot(root1.left, root2.right) && lot(root1.right, root2.left);
-        
+
+        return a.val == b.val && dfs(a.left, b.right) && dfs(a.right, b.left);
     }
 
 }
